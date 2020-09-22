@@ -68,7 +68,7 @@ bigButton.addEventListener('click', function(event) {
         {
           constData.shift();
         }
-        if (counter>100)  // aktualisiert Plot alle 100 Werte
+        if (counter>10)  // aktualisiert Plot alle 100 Werte
         {
           counter=0;
           drawChart();

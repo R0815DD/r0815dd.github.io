@@ -26,7 +26,6 @@ bigButton.addEventListener('click', function(event) {
       })
       .then(device => device.gatt.connect())
       //console.log("Connected");
-      //Test
       .then(server => {
         // Getting ECG Service...
         console.log("connected");

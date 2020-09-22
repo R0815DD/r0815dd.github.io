@@ -94,7 +94,7 @@ bigButton.addEventListener('click', function(event) {
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-    chart.draw(data, options); //Zur Optimierung, diese Zeiele möglichst allein ausführen
+    chart.draw(data, options); //Zur Optimierung, diese Zeile möglichst allein ausführen
   }
 
 

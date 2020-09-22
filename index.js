@@ -8,8 +8,9 @@ const bigButton = document.getElementById('bigButton');
 
 
 let constData = new Array([0,0]);
-
+let counter = 0;
 const start = Date.now();
+let millis = 0;
 
 
 
@@ -65,17 +66,23 @@ bigButton.addEventListener('click', function(event) {
       
       function handleCharacteristicValueChanged(event) {
         let newData = event.target.value.getUint16(0, true);
-        let millis = Date.now() - start;
+        //let millis = Date.now() - start;
         //console.log((millis/1000) + "  " + newData);
-        let x_value = constData.length;
+        millis = millis + 5;
         constData.push([millis , newData]);
+        counter++;
         
 
-        if (constData.length > 200)
+        if (constData.length >= 400)
         {
           constData.shift();
         }
-        drawChart();
+        if (counter>100)
+        {
+          counter=0;
+          drawChart();
+        }
+        
       }
       
   }

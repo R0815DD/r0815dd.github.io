@@ -9,7 +9,8 @@ const bigButton = document.getElementById('bigButton');
 // Initialisiere Variable
 let constData = new Array([0,0]);
 let counter = 0;
-let millis = 0;
+let timestamp = 0;
+let volts = 0;
 
 //Callback wenn Button geklickt wird
 bigButton.addEventListener('click', function(event) {
@@ -56,11 +57,12 @@ bigButton.addEventListener('click', function(event) {
       
       
       function handleCharacteristicValueChanged(event) { //Funktion wenn Charakteristik Wert geändert
-        let newData = event.target.value.getUint16(0, true);  //speichert neuen Wert in newData 
+        let newData = event.target.value.getUint32(0, true);  //speichert neuen Wert in newData 
         //let millis = Date.now() - start;
         //console.log((millis/1000) + "  " + newData);
-        millis = millis + 5;  //Zeitstempel, aktuell 5 ms Zykluszeit
-        constData.push([millis , newData]); //speichert Zeitstempel und Wert in Ringspeicher
+        timestamp = newData >> 12;  //Zeitstempel, aktuell 5 ms Zykluszeit
+        volts = newData & 0x00000FFF;
+        constData.push([timestamp , volts]); //speichert Zeitstempel und Wert in Ringspeicher
         counter++;
         
 
@@ -96,5 +98,6 @@ bigButton.addEventListener('click', function(event) {
     chart.draw(data, options); //Zur Optimierung, diese Zeile möglichst allein ausführen
   }
 
+  
 
 
